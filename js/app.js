@@ -4,8 +4,8 @@
 
 let hours = ['6am', '7am', '8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm', '7pm'];
 
-let salesSection = document.createElement('section');
-
+let salesSection = document.getElementById('sales-section');
+console.dir(salesSection);
 // function salmonImg(){
 //   let imgElem = document.createElement('img');
 //   imgElem.src = 'img/salmon.png';
@@ -15,12 +15,17 @@ let salesSection = document.createElement('section');
 
 // ***** HELPER FUNCTIONS/UTILITIES ****
 
+
 function cookieGenerator(){
-  return Math.floor(Math.random()*200);
+  let cookieCount = 1;
+  for(let i = 0; i < hours.length; i ++){
+    cookieCount = Math.floor(Math.random() * 200);
+  }
+  return cookieCount;
 }
 
 function customerGenerator(){
-  return Math.floor(Math.random()*100); 
+  return Math.floor(Math.random() * 100); 
 }
 
 // ****** OBJECT LITERALS *****
@@ -32,27 +37,34 @@ let seattle = {
   avgCookiesBought: 6.3,
   cookiesBought:[],
   custPerHour:[],
-  generateCustomers: function () {
-    this.custPerHour = customerGenerator();
-  },
-  generateCookies: function (){
-    this.cookiesBought = cookieGenerator();
-  },
   render: function (){
+    // todo: DOM manipulation to make page from scratch, set variable and create element, add content if needed, then append to 
 
-    let articleElem = document.write('article');
-    salesSection.appendChild(salesSection);
-
+    // !! Syntax for appendChild 
+    // !! elementToBeTheParent.appendChild(elementToBecomeChild);
+    let articleElem = document.createElement('article');
+    salesSection.appendChild(articleElem);
+    
+    let h2Elem = document.createElement('h2');
+    h2Elem.textContent = this.name;
+    articleElem.appendChild(h2Elem);
+    
     let ulElem = document.createElement('ul');
-    articleElem.appendChild(ulElem);
+    ulElem.appendChild(articleElem);
+  
+
+    // todo: make liElem to hold each hour iterated over and the amount of cookies bought
   }
 }
-console.log(seattle);
+
 
 
 // ****** EXECUTABLE CODE *******
-
 cookieGenerator();
 customerGenerator();
+
+seattle.render();
+console.log(seattle);
+
 
 
