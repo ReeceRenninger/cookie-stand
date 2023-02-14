@@ -43,9 +43,20 @@ function tableHeader(){
   trElem.appendChild(td2Elem);
 
 }
-
 // todo: FOOTER for table is going to have to have 2 for loops that iterate over the cookies by hour AND the store location to then be stored by the hour index position I think
+function tableFooter (){
+  let tfooter = document.createElement('tfoot'); // th attaches to row
+  tfooter.textContent = 'Totals';
+  tableElem.appendChild(tfooter);
 
+  let trElem = document.createElement('tr'); // row attaches to table
+  tfooter.appendChild(trElem);
+
+  // for (let i = 0; i < hours.length; i++){
+
+  // }
+
+}
 
 // ******** CONSTRUCTOR ********
 function StoreCreator(name, minCust, maxCust, avgCookiesBought){
@@ -70,22 +81,22 @@ StoreCreator.prototype.cookieNum = function () {
     this.dailyTotal += cookieCount;
   }
 };
-// TODO UPDATE ELEMENTS TO BE TABLES
+// // TODO UPDATE ELEMENTS TO BE TABLES
 StoreCreator.prototype.render = function (){
 
   // !! Syntax for appendChild
   // !! elementToBeTheParent.appendChild(elementToBecomeChild);
   //empty row being attached to table
-  let trElem = document.createElement('tr'); 
+  let trElem = document.createElement('tr');
   tableElem.appendChild(trElem);
   // th attaches to row, creating the Store names, Seattle, Tokyo etc.
-  let thElem = document.createElement('th'); 
+  let thElem = document.createElement('th');
   thElem.textContent = this.name;
   trElem.appendChild(thElem);
 
   // td attaches to TR, this generates the cookies bought across the row
   for (let i = 0; i < this.cookiesBought.length; i++){
-    let tdElem = document.createElement('td'); 
+    let tdElem = document.createElement('td');
     tdElem.textContent = this.cookiesBought[i];
     trElem.appendChild(tdElem);
   }
@@ -98,18 +109,20 @@ StoreCreator.prototype.render = function (){
 
 
 // ***** NEW CONSTRUCTOR EXECUTABLE CODE ****
-
+// creates new objects by using constructor above
 let seattle = new StoreCreator('Seattle', 23, 65, 6.3);
 let tokyo = new StoreCreator('Tokyo', 3, 24, 1.2);
 let dubai = new StoreCreator('Dubai', 11, 38, 3.7);
 let paris = new StoreCreator('Paris', 20, 38, 2.3);
 let lima = new StoreCreator('Lima', 2, 16, 4.6);
 
-tableHeader(); // creates header with times and daily location total
-
+// invokes tableHeader function with hours and daily location total text
+tableHeader();
+tableFooter();
+// stores created objects in an array
 storeLocations.push(seattle, tokyo, dubai, paris, lima);
 console.log(storeLocations);
-
+// for loop to invoke each function needed and render to page
 function renderAll (){
   for(let i = 0; i < storeLocations.length; i++){
     storeLocations[i].custNum();
