@@ -56,12 +56,12 @@ let seattle = {
 
     for (let i = 0; i < this.cookiesBought.length; i++){
       let liElem = document.createElement('li');
-      liElem.textContent = `${hours[i]}: ${this.cookiesBought[i]}`;
+      liElem.textContent = `${hours[i]}: ${this.cookiesBought[i]} cookies`;
       ulElem.appendChild(liElem);
     }
 
     let pElem = document.createElement('p');
-    pElem.textContent = `Total: ${this.dailyTotal}`;
+    pElem.textContent = `Total: ${this.dailyTotal} cookies`;
     articleElem.appendChild(pElem);
 
   }
@@ -99,12 +99,12 @@ let tokyo = {
 
     for(let i =0; i < this.cookiesBought.length; i++){
       let liElem = document.createElement('li');
-      liElem.textContent = `${hours[i]}: ${this.cookiesBought[i]}`;
+      liElem.textContent = `${hours[i]}: ${this.cookiesBought[i]} cookies`;
       ulElem.appendChild(liElem);
 
     }
     let pElem = document.createElement('p');
-    pElem.textContent = `Total: ${this.dailyTotal}`;
+    pElem.textContent = `Total: ${this.dailyTotal} cookies`;
     articleElem.appendChild(pElem);
   }
 };
@@ -139,11 +139,11 @@ let dubai = {
 
     for(let i = 0; i < this.cookiesBought.length; i++){
       let liElem = document.createElement('li');
-      liElem.textContent = `${hours[i]}: ${this.cookiesBought[i]}`;
+      liElem.textContent = `${hours[i]}: ${this.cookiesBought[i]} cookies`;
       ulElem.appendChild(liElem);
     }
     let pElem = document.createElement('p');
-    pElem.textContent = `Total: ${this.dailyTotal}`;
+    pElem.textContent = `Total: ${this.dailyTotal} cookies`;
     articleElem.appendChild(pElem);
   },
 };
@@ -178,11 +178,11 @@ let paris = {
 
     for(let i = 0; i < this.cookiesBought.length; i++){
       let liElem = document.createElement('li');
-      liElem.textContent = `${hours[i]}: ${this.cookiesBought[i]}`;
+      liElem.textContent = `${hours[i]}: ${this.cookiesBought[i]} cookies`;
       ulElem.appendChild(liElem);
     }
     let pElem = document.createElement('p');
-    pElem.textContent = `Total: ${this.dailyTotal}`;
+    pElem.textContent = `Total: ${this.dailyTotal} cookies`;
     articleElem.appendChild(pElem);
 
   }
@@ -219,11 +219,11 @@ let lima = {
 
     for(let i = 0; i < this.cookiesBought.length; i++){
       let liElem = document.createElement('li');
-      liElem.textContent = `${hours[i]}: ${this.cookiesBought[i]}`;
+      liElem.textContent = `${hours[i]}: ${this.cookiesBought[i]} cookies`;
       ulElem.appendChild(liElem);
     }
     let pElem = document.createElement('p');
-    pElem.textContent = `Total: ${this.dailyTotal}`;
+    pElem.textContent = `Total: ${this.dailyTotal} cookies`;
     articleElem.appendChild(pElem);
   }
 };
