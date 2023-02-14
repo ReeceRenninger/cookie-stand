@@ -1,0 +1,17 @@
+table * {
+  border: 1px solid black;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body {
+  background-color: aqua;
+}
+
+#Joe-Fish{
+  display: block;
+  margin: auto;
+  padding-bottom: 10px;
+}
+
