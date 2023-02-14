@@ -28,12 +28,13 @@ let seattle = {
   cookiesBought:[],
   dailyTotal: 0,
   custNum: function (){
+    //creates a customer number based off max and min values of the location
     return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
   },
   cookieNum: function () {
     for(let i = 0; i < hours.length; i++){
       let cookieCount = Math.floor(this.custNum() * this.avgCookiesBought);
-      this.cookiesBought.push(cookieCount); // pushes cookieCount value INTO cookiesBought array
+      this.cookiesBought.push(cookieCount); // pushes cookieCount value INTO cookiesBought array for cookies per hour
       this.dailyTotal += cookieCount; // makes the new dailyTotal value become the cookieCount
     }
   },
