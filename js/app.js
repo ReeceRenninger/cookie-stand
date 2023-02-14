@@ -2,7 +2,19 @@
 
 // ****** GLOBAL VARIABLES *****
 let storeLocations = []; // store all store objects
+
 let hours = ['6am', '7am', '8am','9am','10am','11am','12pm','1pm','2pm','3pm','4pm','5pm','6pm', '7pm'];
+
+
+let salesSection = document.getElementById('sales-section'); // window to the dom
+
+salmonImg(); // prints salmon to page MAKE SURE ABOVE THE TABLE ELEMENT CREATION TO KEEP IMG ABOVE
+let tableElem = document.createElement('table');
+salesSection.appendChild(tableElem);
+
+
+//********* HELPER FUNCTIONS  ***********/
+// // todo: create header and footer row functions as stand alone functions, header will be the times
 
 function salmonImg(){
   let imgElem = document.createElement('img');
@@ -11,9 +23,25 @@ function salmonImg(){
   salesSection.appendChild(imgElem);
 }
 
-let salesSection = document.getElementById('sales-section');
-//********* HELPER FUNCTIONS  ***********/
+function tableHeader(){
+  let trElem = document.createElement('tr'); // row attaches to table
+  tableElem.appendChild(trElem);
 
+  let thElem = document.createElement('th'); // th attaches to row
+  trElem.appendChild(thElem);
+
+
+  for (let i = 0; i < hours.length; i++){
+    let tdElem = document.createElement('td'); // td attaches to TR
+    tdElem.textContent = hours[i];
+    trElem.appendChild(tdElem);
+  }
+
+  let td2Elem = document.createElement('td');
+  td2Elem.textContent = 'Daily Location Total';
+  trElem.appendChild(td2Elem);
+
+}
 
 
 // ******** CONSTRUCTOR ********
@@ -39,55 +67,61 @@ StoreCreator.prototype.cookieNum = function () {
     this.dailyTotal += cookieCount;
   }
 };
-
+// TODO UPDATE ELEMENTS TO BE TABLES
 StoreCreator.prototype.render = function (){
-  // todo: DOM manipulation to make page from scratch, set variable and create element, add content if needed, then append to
 
   // !! Syntax for appendChild
   // !! elementToBeTheParent.appendChild(elementToBecomeChild);
-  let articleElem = document.createElement('article');
-  salesSection.appendChild(articleElem);
 
-  let h2Elem = document.createElement('h2');
-  h2Elem.textContent = this.name;
-  articleElem.appendChild(h2Elem);
+  let trElem = document.createElement('tr'); // row attaches to table
+  tableElem.appendChild(trElem);
 
-  let ulElem = document.createElement('ul');
-  articleElem.appendChild(ulElem);
+  let thElem = document.createElement('th'); // th attaches to row
+  thElem.textContent = this.name;
+  trElem.appendChild(thElem);
 
-  // todo: make liElem to hold each hour iterated over and the amount of cookies bought
 
   for (let i = 0; i < this.cookiesBought.length; i++){
-    let liElem = document.createElement('li');
-    liElem.textContent = `${hours[i]}: ${this.cookiesBought[i]} cookies`;
-    ulElem.appendChild(liElem);
+    let tdElem = document.createElement('td'); // td attaches to TR
+    tdElem.textContent = this.cookiesBought[i];
+    trElem.appendChild(tdElem);
   }
 
-  let pElem = document.createElement('p');
-  pElem.textContent = `Total: ${this.dailyTotal} cookies`;
-  articleElem.appendChild(pElem);
+  let td2Elem = document.createElement('td');
+  td2Elem.textContent = this.dailyTotal;
+  trElem.appendChild(td2Elem);
 
 };
 
 
 // ***** NEW CONSTRUCTOR EXECUTABLE CODE ****
-let seattle = new StoreCreator();
-console.log (seattle);
-let tokyo = new StoreCreator();
-let dubai = new StoreCreator();
-let paris = new StoreCreator();
-let lima = new StoreCreator();
-// storeLocations.push(seattle, tokyo, dubai, paris, lima);
-// console.log(storeLocations);
 
-// function renderAll (){
-//   for(let i = 0; i < storeLocations.length; i++){
-//     storeLocations[i].custNum();
-//     storeLocations[i].cookieNum();
-//     storeLocations[i].render();
-//   }
-// }
-// ******* TABLE RENDERING ***** table, rows, table cells
+let seattle = new StoreCreator('Seattle', 23, 65, 6.3);
+
+let tokyo = new StoreCreator('Tokyo', 3, 24, 1.2);
+
+let dubai = new StoreCreator('Dubai', 11, 38, 3.7);
+
+let paris = new StoreCreator('Paris', 20, 38, 2.3);
+
+let lima = new StoreCreator('Lima', 2, 16, 4.6);
+
+
+
+tableHeader(); // creates header with times and daily total
+
+storeLocations.push(seattle, tokyo, dubai, paris, lima);
+console.log(storeLocations);
+
+
+function renderAll (){
+  for(let i = 0; i < storeLocations.length; i++){
+    storeLocations[i].custNum();
+    storeLocations[i].cookieNum();
+    storeLocations[i].render();
+  }
+}
+renderAll();
 
 // ****** OBJECT LITERALS *****
 
@@ -301,7 +335,7 @@ let lima = new StoreCreator();
 // };
 
 // // ****** EXECUTABLE CODE *******
-// salmonImg(); // prints salmon to page
+
 
 // seattle.cookieNum(); // have to call this to populate the array
 // seattle.render(); // this puts the created elements to the HTML page
