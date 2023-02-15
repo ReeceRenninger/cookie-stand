@@ -1,0 +1,40 @@
+* {
+  /* font-family: 'Source Sans Pro', sans-serif; */
+  color: black;
+}
+
+body {
+  background: aqua;
+  
+}
+h1{
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+}
+
+article {
+  width:fit-content;
+  display:flex;
+  justify-content: right;
+  background-color: yellow;
+  border: 1px solid red;
+  border-radius: 5%;
+  text-decoration: underline;
+  font-weight: bold;
+  padding: 10px;
+  margin: 10px;
+}
+
+
+article img {
+  border-radius: 5%;
+}
+section {
+  
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 1.5em;
+}
