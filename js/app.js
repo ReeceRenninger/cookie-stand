@@ -8,7 +8,7 @@ let hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '
 
 let salesSection = document.getElementById('sales-section'); // window to the dom
 
-salmonImg(); // prints salmon to page MAKE SURE ABOVE THE TABLE ELEMENT CREATION TO KEEP IMG ABOVE
+// salmonImg(); // prints salmon to page MAKE SURE ABOVE THE TABLE ELEMENT CREATION TO KEEP IMG ABOVE
 let tableElem = document.createElement('table');
 salesSection.appendChild(tableElem);
 
@@ -31,13 +31,13 @@ let storeLocations = [seattle, tokyo, dubai, paris, lima];
 //********* HELPER FUNCTIONS  ***********/
 // // todo: create header and footer row functions as stand alone functions, header will be the times
 
-function salmonImg() {
-  let imgElem = document.createElement('img');
-  imgElem.id = 'Joe-Fish';
-  imgElem.src = 'img/chinook1.jpg';
-  imgElem.alt = 'A standard Josalmon Image';
-  salesSection.appendChild(imgElem);
-}
+// function salmonImg() {
+//   let imgElem = document.createElement('img');
+//   imgElem.id = 'Joe-Fish';
+//   imgElem.src = 'img/chinook1.jpg';
+//   imgElem.alt = 'A standard Josalmon Image';
+//   salesSection.appendChild(imgElem);
+// }
 
 function tableHeader() {
   let trElem = document.createElement('tr'); // row attaches to table
@@ -65,14 +65,14 @@ function tableFooter() {
   tableElem.appendChild(tfooter);
 
   // for (let i = 0; i < hours.length; i++) {
-  //   let sum = 0;
+  //   let totalHourly = 0;
   //   for (let j = 0; j < storeLocations.length; j++) {
-  //     sum += storeLocations[j].cookiesBought[i];
-  //     let totalElem = document.createElement('td');
-  //     totalElem.textContent = sum;
-  //     tfooter.appendChild(totalElem);
-  //     console.log(seattle.cookiesBought[i]);
+  //     totalHourly += storeLocations[j].cookiesBought[i];
+  //     console.log(storeLocations[j].cookiesBought[i]);
   //   }
+  //   let totalElem = document.createElement('td');
+  //   totalElem.textContent = totalHourly;
+  //   tfooter.appendChild(totalElem);
   // }
 }
 // for loop to invoke each function needed and render to page
