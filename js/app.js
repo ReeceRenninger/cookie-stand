@@ -43,7 +43,7 @@ function tableHeader(){
   trElem.appendChild(td2Elem);
 
 }
-// todo: FOOTER for table is going to have to have 2 for loops that iterate over the cookies by hour AND the store location to then be stored by the hour index position I think
+// todo: FOOTER for table is going to have to have 2 for loops that iterate over the cookies by hour AND the store location to then be stored by the hour index position and have to sum the cookies for each location at that hour I think
 function tableFooter (){
   let tfooter = document.createElement('tfoot'); // th attaches to row
   tfooter.textContent = 'Totals';
