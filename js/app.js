@@ -111,6 +111,7 @@ StoreCreator.prototype.render = function (){
 // ***** NEW CONSTRUCTOR EXECUTABLE CODE ****
 // creates new objects by using constructor above
 let seattle = new StoreCreator('Seattle', 23, 65, 6.3);
+console.log(seattle);
 let tokyo = new StoreCreator('Tokyo', 3, 24, 1.2);
 let dubai = new StoreCreator('Dubai', 11, 38, 3.7);
 let paris = new StoreCreator('Paris', 20, 38, 2.3);
