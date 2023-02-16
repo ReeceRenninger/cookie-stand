@@ -52,7 +52,7 @@ function tableHeader() {
   }
 
   let td2Elem = document.createElement('td');
-  td2Elem.textContent = 'Daily Location Total';
+  td2Elem.textContent = 'Grand Total:';
   trElem.appendChild(td2Elem);
 }
 
@@ -125,21 +125,23 @@ function handleFormSubmit(event){
   let storeName = event.target.storeName.value;
   let minimumCust = +event.target.minimumCust.value;
   let maximumCust = +event.target.maximumCust.value;
-  let avgCookiesBought = +event.target.avgCookiesBought.value;
-  // TODO: CREATE NEW STORE WITH FORM INPUTS
+  let custPurchases = +event.target.custPurchases.value;
 
-  let newUserStore = new StoreCreator(storeName, minimumCust, maximumCust, avgCookiesBought);
+  // TODO: CREATE NEW STORE WITH FORM INPUTS
+  console.log(storeName,minimumCust,maximumCust,custPurchases);
+  let newUserStore = new StoreCreator(storeName, minimumCust, maximumCust, custPurchases);
 
   // TODO: FIND A WAY TO REMOVE FOOTER
-  // tableFooter.remove();
-  
-  // StoreCreator.custNum();
-  // StoreCreator.cookieNum();
-  // StoreCreator.render();
+  document.querySelector('tfoot').remove();
+  console.dir(tableElem);
+
+  newUserStore.custNum();
+  newUserStore.cookieNum();
+  newUserStore.render();
 
   // TODO: PUT FOOTER BACK
-
   storeLocations.push(newUserStore);
+  tableFooter();
   myForm.reset();
 }
 
