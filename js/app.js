@@ -1,27 +1,43 @@
 'use strict';
 
 // ****** GLOBAL VARIABLES *****
-let storeLocations = []; // store all store objects
+// store all store objects
 
 let hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
 
 let salesSection = document.getElementById('sales-section'); // window to the dom
 
-salmonImg(); // prints salmon to page MAKE SURE ABOVE THE TABLE ELEMENT CREATION TO KEEP IMG ABOVE
+// salmonImg(); // prints salmon to page MAKE SURE ABOVE THE TABLE ELEMENT CREATION TO KEEP IMG ABOVE
 let tableElem = document.createElement('table');
 salesSection.appendChild(tableElem);
 
+// ******** CONSTRUCTOR ********
+function StoreCreator(name, minCust, maxCust, avgCookiesBought) {
+  this.name = name;
+  this.minCust = minCust;
+  this.maxCust = maxCust;
+  this.avgCookiesBought = avgCookiesBought;
+  this.cookiesBought = [];
+  this.dailyTotal = 0;
+}
+// creates new objects by using constructor above
+let seattle = new StoreCreator('Seattle', 23, 65, 6.3);
+let tokyo = new StoreCreator('Tokyo', 3, 24, 1.2);
+let dubai = new StoreCreator('Dubai', 11, 38, 3.7);
+let paris = new StoreCreator('Paris', 20, 38, 2.3);
+let lima = new StoreCreator('Lima', 2, 16, 4.6);
 
+let storeLocations = [seattle, tokyo, dubai, paris, lima];
 //********* HELPER FUNCTIONS  ***********/
 // // todo: create header and footer row functions as stand alone functions, header will be the times
-
-function salmonImg() {
-  let imgElem = document.createElement('img');
-  imgElem.id = 'Joe-Fish';
-  imgElem.src = 'img/chinook1.jpg';
-  imgElem.alt = 'A standard Josalmon Image';
-  salesSection.appendChild(imgElem);
+// for loop to invoke each function needed and render to page
+function renderAll() {
+  for (let i = 0; i < storeLocations.length; i++) {
+    storeLocations[i].custNum();
+    storeLocations[i].cookieNum();
+    storeLocations[i].render();
+  }
 }
 
 function tableHeader() {
@@ -43,39 +59,33 @@ function tableHeader() {
   trElem.appendChild(td2Elem);
 
 }
-// todo: FOOTER for table is going to have to have 2 for loops that iterate over the cookies by hour AND the store location to then be stored by the hour index position and have to sum the cookies for each location at that hour I think
+// // todo: FOOTER for table is going to have to have 2 for loops that iterate over the cookies by hour AND the store location to then be stored by the hour index position and have to sum the cookies for each location at that hour I think
 function tableFooter() {
   let tfooter = document.createElement('tfoot'); // th attaches to row
-  tfooter.textContent = 'Totals';
   tableElem.appendChild(tfooter);
 
-//   for (let i = 0; i < hours.length; i++) {
-//     let sum = 0;
-//     for (let j = 0; j < storeLocations.length; j++) {
-//       sum += storeLocations[j].hours[i];
-//       let totalElem = document.createElement('td');
-//       totalElem.textContent = sum;
-//       tfooter.appendChild(totalElem);
-//     }
-//     console.log(sum);
-//   }
-}
-// for loop to invoke each function needed and render to page
-function renderAll() {
-  for (let i = 0; i < storeLocations.length; i++) {
-    storeLocations[i].custNum();
-    storeLocations[i].cookieNum();
-    storeLocations[i].render();
+  let footRow = document.createElement('tr');
+  tfooter.appendChild(footRow);
+
+  let footCell = document.createElement('td');
+  footCell.textContent = 'Hourly Total:';
+
+  footRow.appendChild(footCell);
+  let grandTotal = 0; // DOES NOT RESET ON LOOP COMPLETION, HOLDS ALL VALUES to print grand total
+  for (let i = 0; i < hours.length; i++) {
+    let totalHourly = 0; // resets to 0 on j loop completion on each iteration
+    for (let j = 0; j < storeLocations.length; j++) {
+      totalHourly += storeLocations[j].cookiesBought[i];
+      grandTotal += storeLocations[j].cookiesBought[i];
+    }
+    let totalElem = document.createElement('td');
+    totalElem.textContent = totalHourly;
+    footRow.appendChild(totalElem);
   }
-}
-// ******** CONSTRUCTOR ********
-function StoreCreator(name, minCust, maxCust, avgCookiesBought) {
-  this.name = name;
-  this.minCust = minCust;
-  this.maxCust = maxCust;
-  this.avgCookiesBought = avgCookiesBought;
-  this.cookiesBought = [];
-  this.dailyTotal = 0;
+  let grandTotalCell = document.createElement('td');
+  grandTotalCell.textContent = grandTotal;
+  footRow.appendChild(grandTotalCell);
+  console.log(grandTotal);
 }
 
 // ******* PROTOTYPE METHODS *********
@@ -119,18 +129,10 @@ StoreCreator.prototype.render = function () {
 
 
 // ***** NEW CONSTRUCTOR EXECUTABLE CODE ****
-// creates new objects by using constructor above
-let seattle = new StoreCreator('Seattle', 23, 65, 6.3);
-let tokyo = new StoreCreator('Tokyo', 3, 24, 1.2);
-let dubai = new StoreCreator('Dubai', 11, 38, 3.7);
-let paris = new StoreCreator('Paris', 20, 38, 2.3);
-let lima = new StoreCreator('Lima', 2, 16, 4.6);
-
-storeLocations.push(seattle, tokyo, dubai, paris, lima);
 console.log(storeLocations);
 tableHeader();
-tableFooter();
 renderAll();
+tableFooter();
 // ****** OBJECT LITERALS *****
 
 // let seattle = {

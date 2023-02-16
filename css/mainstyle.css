@@ -1,0 +1,73 @@
+* {
+  /* font-family: 'Source Sans Pro', sans-serif; */
+  color: black;
+}
+
+body {
+  background: aqua;
+
+}
+
+header nav{
+  display: flex;
+  justify-content: center;
+  background-color: pink;
+  font-size: 20px;
+}
+
+#reeceFish {
+  margin-left: 140px;
+}
+
+#fourFish {
+  margin:auto;
+}
+
+h1{
+  font-weight: bold;
+  font-size: 2em;
+  text-align: center;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+#storeInfo{
+  font-size: 1em;
+  text-align: center;
+  background-color: orange;
+  border-radius: 30%;
+  margin: 20px;
+  padding: 10px;
+}
+
+#productSection {
+  display: inline-block;
+  text-align: center;
+  background-color: red;
+  margin-left: 25%;
+  margin-bottom: 10px;
+}
+
+article{
+  display: inline-block;
+  border: 1px dashed black;
+  margin: 10px;
+  padding: 10px;
+  text-align: justify;
+}
+
+#customerSection{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+  
