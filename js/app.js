@@ -1,14 +1,12 @@
 'use strict';
 
 // ****** GLOBAL VARIABLES *****
-// store all store objects
-
 let hours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
-
-
-let salesSection = document.getElementById('sales-section'); // window to the dom
-
-// salmonImg(); // prints salmon to page MAKE SURE ABOVE THE TABLE ELEMENT CREATION TO KEEP IMG ABOVE
+// window to the dom
+let salesSection = document.getElementById('sales-section'); 
+// // TODO: Grab element by id from HTML page
+let myForm = document.getElementById('my-form');
+//creates table element attached to section on HTML
 let tableElem = document.createElement('table');
 salesSection.appendChild(tableElem);
 
@@ -21,17 +19,17 @@ function StoreCreator(name, minCust, maxCust, avgCookiesBought) {
   this.cookiesBought = [];
   this.dailyTotal = 0;
 }
-// creates new objects by using constructor above
+
 let seattle = new StoreCreator('Seattle', 23, 65, 6.3);
 let tokyo = new StoreCreator('Tokyo', 3, 24, 1.2);
 let dubai = new StoreCreator('Dubai', 11, 38, 3.7);
 let paris = new StoreCreator('Paris', 20, 38, 2.3);
 let lima = new StoreCreator('Lima', 2, 16, 4.6);
-
 let storeLocations = [seattle, tokyo, dubai, paris, lima];
+
+
 //********* HELPER FUNCTIONS  ***********/
-// // todo: create header and footer row functions as stand alone functions, header will be the times
-// for loop to invoke each function needed and render to page
+
 function renderAll() {
   for (let i = 0; i < storeLocations.length; i++) {
     storeLocations[i].custNum();
@@ -47,7 +45,6 @@ function tableHeader() {
   let thElem = document.createElement('th'); // th attaches to row
   trElem.appendChild(thElem);
 
-
   for (let i = 0; i < hours.length; i++) {
     let tdElem = document.createElement('td'); // td attaches to TR
     tdElem.textContent = hours[i];
@@ -55,22 +52,22 @@ function tableHeader() {
   }
 
   let td2Elem = document.createElement('td');
-  td2Elem.textContent = 'Daily Location Total';
+  td2Elem.textContent = 'Grand Total:';
   trElem.appendChild(td2Elem);
-
 }
-// // todo: FOOTER for table is going to have to have 2 for loops that iterate over the cookies by hour AND the store location to then be stored by the hour index position and have to sum the cookies for each location at that hour I think
+
 function tableFooter() {
-  let tfooter = document.createElement('tfoot'); // th attaches to row
-  tableElem.appendChild(tfooter);
+  let tFooter = document.createElement('tfoot'); // th attaches to row
+  tableElem.appendChild(tFooter);
 
   let footRow = document.createElement('tr');
-  tfooter.appendChild(footRow);
+  tFooter.appendChild(footRow);
 
   let footCell = document.createElement('td');
   footCell.textContent = 'Hourly Total:';
 
   footRow.appendChild(footCell);
+
   let grandTotal = 0; // DOES NOT RESET ON LOOP COMPLETION, HOLDS ALL VALUES to print grand total
   for (let i = 0; i < hours.length; i++) {
     let totalHourly = 0; // resets to 0 on j loop completion on each iteration
@@ -101,39 +98,63 @@ StoreCreator.prototype.cookieNum = function () {
     this.dailyTotal += cookieCount;
   }
 };
-// // TODO UPDATE ELEMENTS TO BE TABLES
-StoreCreator.prototype.render = function () {
 
-  // !! Syntax for appendChild
-  // !! elementToBeTheParent.appendChild(elementToBecomeChild);
-  //empty row being attached to table
+StoreCreator.prototype.render = function () {
   let trElem = document.createElement('tr');
   tableElem.appendChild(trElem);
-  // th attaches to row, creating the Store names, Seattle, Tokyo etc.
+
   let thElem = document.createElement('th');
   thElem.textContent = this.name;
   trElem.appendChild(thElem);
 
-  // td attaches to TR, this generates the cookies bought across the row
   for (let i = 0; i < this.cookiesBought.length; i++) {
     let tdElem = document.createElement('td');
     tdElem.textContent = this.cookiesBought[i];
     trElem.appendChild(tdElem);
   }
-  // new td element to create
+
   let td2Elem = document.createElement('td');
   td2Elem.textContent = this.dailyTotal;
   trElem.appendChild(td2Elem);
-
 };
 
+// *********** FORM HANDLING *********
+function handleFormSubmit(event){
+  event.preventDefault();
+  console.log('Form Submit'); // Proof of life!
+  let storeName = event.target.storeName.value;
+  let minimumCust = +event.target.minimumCust.value;
+  let maximumCust = +event.target.maximumCust.value;
+  let custPurchases = +event.target.custPurchases.value;
+
+  // TODO: CREATE NEW STORE WITH FORM INPUTS
+  console.log(storeName,minimumCust,maximumCust,custPurchases);
+  let newUserStore = new StoreCreator(storeName, minimumCust, maximumCust, custPurchases);
+
+  // TODO: FIND A WAY TO REMOVE FOOTER
+  document.querySelector('tfoot').remove();
+  console.dir(tableElem);
+
+  newUserStore.custNum();
+  newUserStore.cookieNum();
+  newUserStore.render();
+
+  // TODO: PUT FOOTER BACK
+  storeLocations.push(newUserStore);
+  tableFooter();
+  myForm.reset();
+}
 
 // ***** NEW CONSTRUCTOR EXECUTABLE CODE ****
 console.log(storeLocations);
 tableHeader();
 renderAll();
 tableFooter();
-// ****** OBJECT LITERALS *****
+
+// todo: STEP TWO ATTACH EVENT LISTENERS
+myForm.addEventListener('submit', handleFormSubmit);
+
+// //
 
 // let seattle = {
 //   name: 'Seattle',

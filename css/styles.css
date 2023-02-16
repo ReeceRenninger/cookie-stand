@@ -1,17 +1,29 @@
-table * {
-  border: 1px solid black;
-  padding: 5px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
 body {
   background-color: aqua;
+  text-align: center;
+}
+table {
+  border: 1px solid black;
+  padding:5px;
+  background-color: pink;
+  margin: auto;
+}
+table td {
+  border: 1px solid black;
+  padding:5px;
+}
+table th {
+  border: 1px solid black;
+  padding:5px;
+}
+form{
+padding-top: 10px;
+text-align: center;
 }
 
-#Joe-Fish{
-  display: block;
-  margin: auto;
-  padding-bottom: 10px;
+#form-title{
+  font-weight: bold;
+  font-size: 1em;
 }
+
 
