@@ -64,10 +64,21 @@ article{
   padding: 10px;
   text-align: justify;
 }
-
-#customerSection{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#familyPic{
+  border-radius: 25%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
   
+
+
+
+footer{
+  background-color: blueviolet;
+  color:white;
+  width: auto;
+  height: 100%;
+  border: solid 1px black;
+  text-align: center;
+}
